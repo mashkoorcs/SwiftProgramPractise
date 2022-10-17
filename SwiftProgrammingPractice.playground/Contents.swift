@@ -408,3 +408,6 @@ let objB=B()
 
 objA.delegate=objB
 objA.callingDelegate()
+
+
+
