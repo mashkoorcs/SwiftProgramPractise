@@ -2,6 +2,10 @@ import UIKit
 
 var greeting = "Hello, playground"
 
+//collection Types
+
+
+
 
 //control Flow
 
@@ -408,6 +412,3 @@ let objB=B()
 
 objA.delegate=objB
 objA.callingDelegate()
-
-
-
