@@ -412,3 +412,46 @@ let objB=B()
 
 objA.delegate=objB
 objA.callingDelegate()
+
+
+var completionHandlers: [() -> Void] = []
+func someFunctionWithEscapingClosure(completionHandler: @escaping () -> Void) {
+    completionHandlers.append(completionHandler)
+}
+
+
+func someFunctionWithNonescapingClosure(closure: () -> Void) {
+    closure()
+}
+
+class SomeClasss {
+    var x = 10
+    func doSomething() {
+        someFunctionWithEscapingClosure { [self] in x = 100 }
+        someFunctionWithNonescapingClosure { x = 200 }
+        
+        print("the x value is \(x)")
+    }
+    
+}
+
+let instance = SomeClasss()
+instance.doSomething()
+print(instance.x)
+// Prints "200"
+
+completionHandlers.first?()
+print(instance.x)
+
+
+
+//practice
+
+//let plainString = "i am mash \n\n where are you \n\n how are you"
+//let encodedString = plainString.replacingOccurrences(of: "\n", with: "<br>")
+//let htmlString = "<span>\(encodedString)</span>"
+//
+//let attributedString = try! NSMutableAttributedString(data: htmlString.data(using: String.Encoding.unicode, allowLossyConversion: true)!, options: [.documentType: NSMutableAttributedString.DocumentType.html], documentAttributes: nil)
+//
+//print("the strrr is \(attributedString)")
+
